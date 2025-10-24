@@ -24,9 +24,9 @@ fetch(url)
         const options = select.options;
 
         console.log("found options:", options.length - 1);
-        if (options.length > 0) {
+        if (options.length > 1) {
             const dates = [];
-            for (let i = 0; i < options.length; i++) {
+            for (let i = 1; i < options.length; i++) {
                 const date = options[i].text;
                 dates.push(date);
             }
