@@ -1,0 +1,31 @@
+name: Check website
+
+on:
+  schedule:
+    - cron: "0 * * * *" # every hour
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install node-fetch jsdom form-data
+
+      - name: Run check
+        env:
+          SEZNAM_USER: ${{ secrets.SEZNAM_USER }}
+          SEZNAM_PASS: ${{ secrets.SEZNAM_PASS }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
+          TO_EMAIL_SECOND: ${{ secrets.TO_EMAIL_SECOND }}
+        run: node index.js
