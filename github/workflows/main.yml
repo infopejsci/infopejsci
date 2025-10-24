@@ -20,7 +20,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install node-fetch jsdom form-data
+        run: npm install node-fetch jsdom form-data nodemailer
 
       - name: Run check
         env:
